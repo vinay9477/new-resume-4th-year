@@ -164,8 +164,102 @@ h2.sh span{background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-backgr
 .cterm{background:rgba(0,0,0,.45);border:1px solid var(--border);border-radius:12px;overflow:hidden;backdrop-filter:blur(10px);}
 footer{position:relative;z-index:2;padding:1.8rem 6vw;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-family:var(--mono);font-size:.65rem;color:var(--mute);}
 .fb{background:linear-gradient(135deg,var(--g1),var(--g2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;font-size:.8rem;}
-@media(max-width:1024px){#hero{grid-template-columns:1fr;padding-top:80px;}.hv{max-width:500px;}.pfeat{grid-template-columns:1fr;}.pfl{border-right:none;border-bottom:1px solid var(--border);}.prow{grid-template-columns:1fr 1fr;}.erow{grid-template-columns:1fr;}.cw{grid-template-columns:1fr;}.ag{grid-template-columns:1fr;}}
-@media(max-width:640px){.nav-links{display:none;}h1.hname{font-size:4.5rem;}.prow{grid-template-columns:1fr;}#cur,#cur2{display:none;}body{cursor:auto;}}
+
+/* ── TABLET ── */
+@media(max-width:1024px){
+  #hero{grid-template-columns:1fr;padding-top:90px;gap:2.5rem;}
+  .hv{max-width:560px;}
+  .pfeat{grid-template-columns:1fr;}
+  .pfl{border-right:none;border-bottom:1px solid var(--border);}
+  .prow{grid-template-columns:1fr 1fr;}
+  .erow{grid-template-columns:1fr 1fr;}
+  .cw{grid-template-columns:1fr;}
+  .ag{grid-template-columns:1fr;}
+  .sec{padding:5rem 5vw;}
+}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  /* cursor off */
+  #cur,#cur2{display:none;}body{cursor:auto;}
+
+  /* nav */
+  nav{padding:0 4vw;height:56px;}
+  .nav-links{display:none;}
+  .ham{display:flex !important;align-items:center;justify-content:center;}
+
+  /* mobile drawer */
+  #mob-menu{
+    display:none;position:fixed;top:56px;left:0;right:0;bottom:0;z-index:199;
+    background:rgba(4,7,13,.97);backdrop-filter:blur(20px);
+    flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  }
+  #mob-menu.open{display:flex;}
+  #mob-menu a{font-family:var(--mono);font-size:1.1rem;letter-spacing:.18em;text-transform:uppercase;color:var(--txt);text-decoration:none;transition:color .2s;}
+  #mob-menu a:hover{color:var(--g1);}
+
+  /* hero */
+  #hero{padding:80px 4vw 3rem;gap:2rem;}
+  h1.hname{font-size:clamp(3.5rem,16vw,5rem);}
+  .he{font-size:.62rem;}
+  .typing-w{font-size:.65rem;}
+  .hero-role{font-size:.72rem;line-height:2;}
+  .hero-bio{font-size:.9rem;}
+  .hero-cta{flex-direction:column;gap:.75rem;}
+  .btn{width:100%;justify-content:center;padding:.85rem 1.5rem;}
+
+  /* card */
+  .hvc{padding:1.4rem;}
+  .hv-pw{gap:.9rem;}
+  .hv-ph{width:58px;height:58px;}
+  .hv-n{font-size:1rem;}
+  .hvst .n{font-size:1.5rem;}
+
+  /* sections */
+  .sec{padding:4rem 4vw;}
+  h2.sh{font-size:clamp(2rem,10vw,3rem);margin-bottom:2.5rem;}
+
+  /* about */
+  .ag{grid-template-columns:1fr;gap:2rem;}
+
+  /* skills */
+  .skgr{grid-template-columns:1fr;}
+  .skc{padding:1.2rem;}
+
+  /* projects */
+  .pfeat{grid-template-columns:1fr;}
+  .pfl{padding:1.5rem;border-right:none;border-bottom:1px solid var(--border);}
+  .pfr{padding:1.5rem;gap:.5rem;}
+  .pft{font-size:2rem;}
+  .prow{grid-template-columns:1fr;}
+  .pc{padding:1.4rem;}
+
+  /* education */
+  .erow{grid-template-columns:1fr;}
+
+  /* timeline */
+  .tl{padding-left:1.5rem;}
+  .tli::before{left:-1.5rem;}
+
+  /* certs */
+  .cgr{grid-template-columns:1fr;}
+
+  /* contact */
+  .cw{grid-template-columns:1fr;gap:2rem;}
+  .ch{font-size:.9rem;}
+
+  /* footer */
+  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.4rem 4vw;}
+}
+
+@media(max-width:380px){
+  h1.hname{font-size:3rem;}
+  .sec{padding:3rem 4vw;}
+}
+
+
+/* show ham only mobile */
+@media(min-width:641px){.ham{display:none !important;}}
 </style>
 </head>
 <body>
@@ -177,7 +271,18 @@ footer{position:relative;z-index:2;padding:1.8rem 6vw;border-top:1px solid var(-
     <li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#projects">Projects</a></li><li><a href="#education">Education</a></li><li><a href="#experience">Experience</a></li><li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-dot"></div>
+  <button class="ham" id="ham-btn" aria-label="Menu" style="display:none;background:none;border:1px solid var(--border);border-radius:4px;padding:.4rem .55rem;cursor:pointer;color:var(--txt);">
+    <i class="fas fa-bars" id="ham-icon" style="font-size:.9rem;"></i>
+  </button>
 </nav>
+<div id="mob-menu">
+  <a href="#about" class="mob-link">About</a>
+  <a href="#skills" class="mob-link">Skills</a>
+  <a href="#projects" class="mob-link">Projects</a>
+  <a href="#education" class="mob-link">Education</a>
+  <a href="#experience" class="mob-link">Experience</a>
+  <a href="#contact" class="mob-link">Contact</a>
+</div>
 <section id="hero">
   <div>
     <div class="he">Cybersecurity &amp; Full-Stack Engineer</div>
@@ -400,6 +505,19 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.le
 const all=document.querySelectorAll('.reveal,.rl,.rr');
 const io=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*60);io.unobserve(e.target);}});},{threshold:.08});
 all.forEach(el=>io.observe(el));
+
+// hamburger
+const hamBtn=document.getElementById('ham-btn');
+const mobMenu=document.getElementById('mob-menu');
+const hamIcon=document.getElementById('ham-icon');
+hamBtn.addEventListener('click',()=>{
+  mobMenu.classList.toggle('open');
+  hamIcon.className=mobMenu.classList.contains('open')?'fas fa-times':'fas fa-bars';
+});
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>{
+  mobMenu.classList.remove('open');
+  hamIcon.className='fas fa-bars';
+}));
 </script>
 </body>
 </html>
